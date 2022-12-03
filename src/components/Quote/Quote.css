@@ -8,6 +8,7 @@
     margin-top: 20px;
 
 }
-.buttons{
-
+.main-content {
+    display: flex;
+    justify-content: space-between;
 }

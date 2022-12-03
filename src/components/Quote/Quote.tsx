@@ -2,6 +2,8 @@ import React, {useCallback, useEffect, useState} from 'react';
 import './Quote.css'
 import {QuoteInt, QuotesList} from "../../types";
 import axiosApi from "../../axiosApi";
+import {Link} from "react-router-dom";
+import NavMenu from "../../containers/NavMenu/NavMenu";
 
 const Quote = () => {
   const [quotes,setQuotes] = useState<QuoteInt[]>([])
@@ -27,17 +29,23 @@ const Quote = () => {
 
 
   return (
-        <div>{quotes.map(quote => (
-           <div className='quote-card'>
-             <p>{quote.text}
+    <div className="main-content">
+      <div>
+        <NavMenu/>
+      </div>
+        <div> {quotes.map(quote => (
+           <div key={quote.id} className='quote-card'>
+             <div>{quote.text}
                <p> © <b>{quote.author}</b> </p>
-             </p>
+             </div>
              <div className="buttons">
-               <button>Edit</button>
+               <Link to={'edit-quote/' + quote.id} >Edit</Link>
                <button>Delete</button>
              </div>
            </div>
-      ))}</div>
+      ))}
+        </div>
+    </div>
 
 
   );
